@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="nofollow,noindex">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Distribución de Horas | Mis datos</title>
+  </head>
+  <body class="bg-light">
+  <div class="container pb-5">
+    <div class="row pb-5">
+      <div class="col-sm-10 pt-4 pb-2">
+        <h1>Mis visualizaciones</h1>
+      </div>
+      <div class="col-sm-2 text-right pt-5 pb-2 d-none d-sm-block">
+        <a href="info.html" id="especial">Info</a>
+      </div>
+      <div id="chart_div"></div>
+      <div class="col-sm-8">
+        <h3 class="border-bottom py-2">Distribución de horas</h3>
+        <p>En esta tabla podemos ver <b>cómo distribuyo</b> mi tiempo en un solo día, como podemos notar: no hay tiempo libre para distensión, salvo el pasear a mi perro y viajar en metro, una hora cada una. Probablemente el gráfico sería peor si estuviese haciendo Práctica Profesional I, pero por suerte no.</p>
+      </div>
+      <div class="col-sm-4 small">
+        <h5 class="border-bottom pt-3 pb-2">Más información</h5>
+        <p>Nuevamente, un gráfico de la biblioteca de Google Charts. <br>Vale acotar que "comer", incluye: desayuno, almuerzo y once; y "viajes", son tanto de ida, como de vuelta. </p>
+      </div>
+    </div><!--acá cierro el row-->
+  </div><!--acá cierro el container-->
+
+  <nav class="navbar fixed-bottom navbar-expand-md navbar-light bg-light">
+    <div class="container border-top">
+      <a class="navbar-brand" href="index.html">Mis visualizaciones</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Portada</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="segunda.html">Segunda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tercera.html">Tercera</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cuarta.html">Cuarta</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="quinta.html">Quinta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="info.html">Más info</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Estábamos en p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Cosa');
+        data.addColumn('number', 'Horas');
+        data.addRows([
+          ['Dormir', 3],
+          ['Comer', 5],
+          ['Clases', 8],
+          ['Trabajos', 6],
+          ['Pasear a mi perro', 1],
+          ['Viajes', 1],
+        ]);
+
+        // Set chart options
+        var options = {'width':800,
+                       'height':500,
+                       'backgroundColor':'#F8F9FB',
+                       'slices': {
+            0: { color: '#FFA7A6' },
+            1: { color: '#97A676' },
+            2: { color: '#FFD7D6' },
+            3: { color: '#5D7044' },
+            4: { color: '#FF7061' },
+            5: { color: '#B8D498' }
+          }
+        }
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </body>
+</html>
