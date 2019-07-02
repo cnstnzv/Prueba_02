@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="nofollow,noindex">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Tiempo de viaje | Mis datos</title>
+  </head>
+  <body class="bg-light">
+  <div class="container pb-5">
+    <div class="row pb-5">
+      <div class="col-sm-10 pt-4 pb-2">
+        <h1>Mis visualizaciones</h1>
+      </div>
+      <div class="col-sm-2 text-right pt-5 pb-2 d-none d-sm-block">
+        <a href="info.html" id="especial">Info</a>
+      </div>
+      <div id="chart_div" style="width: 500px; height: 400px"></div>
+      <div class="col-sm-8">
+        <h3 class="border-bottom py-2">Tiempo de viaje</h3>
+        <p>Acá podemos ver la visualización del tiempo que demoro en <b>viajes de ida y vuelta</b> en un día normal de la semana, considerando el horario del día y las diferentes opciones que se pueden tomar. Viéndolo así, podemos entender que la forma más conveniente será viajar en metro, y la menos conveniente va a ser caminar.</p>
+      </div>
+      <div class="col-sm-4 small">
+        <h5 class="border-bottom pt-3 pb-2">Más información</h5>
+        <p>Nuevamente, usé una visualización de Google Charts. Además de eso, vale acotar que vivo en Metro Hernando de Magallanes.</p>
+      </div>
+    </div><!--acá cierro el row-->
+  </div><!--acá cierro el container-->
+
+  <nav class="navbar fixed-bottom navbar-expand-md navbar-light bg-light">
+    <div class="container border-top">
+      <a class="navbar-brand" href="index.html">Mis visualizaciones</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Portada</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="segunda.html">Segunda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tercera.html">Tercera</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="cuarta.html">Cuarta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="quinta.html">Quinta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="info.html">Más info</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Estábamos en p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+     google.charts.load('current', {'packages':['bar']});
+     google.charts.setOnLoadCallback(drawChart);
+
+     function drawChart() {
+       var data = google.visualization.arrayToDataTable([
+         [' ', 'Ida', 'Vuelta'],
+         ['Metro', 17, 19],
+         ['Micro', 59, 60],
+         ['Pie', 104, 113],
+         ['Auto', 22, 25]
+       ]);
+
+       var options = {
+         'backgroundColor':'#F8F9FB',
+         colors: ['#FFD7D6', '#FFA7A6']
+       };
+
+       var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+       chart.draw(data, google.charts.Bar.convertOptions(options));
+     }
+   </script>
+  </body>
+</html>
